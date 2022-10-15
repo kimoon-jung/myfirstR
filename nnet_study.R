@@ -16,6 +16,33 @@ r_nn <- nnet(weight~., data = r_train, size = 3, decay =5e-4,
 
 summary(r_nn)
 
+test <- r_test
+test$pred <- predict(r_nn, newdata = r_test)
+head(test)
+plot(test)
+
+library(MASS)
+library(caret)
+nor <- preProcess(w[,1:2], method = "range")
+r_x_train <- predict(nor, r_train[,1:2])
+summary(r_x_train)
+r_x_test <- predict(nor, r_test[,1:2])
+summary(r_x_test)
+r_n_train <- cbind(r_x_train, r_train[,3])
+names(r_n_train[3]) <- "weight"
+r_n_test <- cbind(r_x_test, r_test[,3])
+names(r_n_test)[3] <- "weight"
+
+
+
+
+
+
+
+
+
+
+
 
 ##================================================================
 ## 신경망 시각화
@@ -34,4 +61,4 @@ plot.nnet(r_nn)
 ##================================================================
 library(NeuralNetTools)
 garson(r_nn)
-lekprofile(iris.nn)
+lekprofile(r_nn)

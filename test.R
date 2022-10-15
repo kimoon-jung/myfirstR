@@ -40,3 +40,6 @@ ggplot(data = plot_data, aes(x = x, y = y)) +
   labs(title = TeX("$f(x) = 10 sin^{2}(x) + x^2$")) +
   annotate("text", x = 2.5, y = 75, 
            label = TeX("$f(x) = \\sum_{i=1}^{n}(x_i - \\mu)^2$"))
+
+library(scatterplot3d)
+library(magritter)
